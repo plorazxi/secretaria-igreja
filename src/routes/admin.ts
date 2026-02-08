@@ -2,13 +2,13 @@ import express from "express";
 import { compare } from "bcrypt";
 import jwt from "jsonwebtoken";
 import { env } from "../env.js";
-import { validate } from "../middleware/validate.js";
+import { validateSchema } from "../middleware/validateSchema.js";
 import { loginSchema } from "../interfaces/adminInterface.js";
 
 const router = express.Router();
 
 // Rota de realização de login do administrador
-router.post('/login', validate(loginSchema), async (req, res) => {
+router.post('/login', validateSchema(loginSchema), async (req, res) => {
     const { login, password } = req.body;
     if(login !== env.ADMIN_LOGIN) {
         return res.status(401).send({
