@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "docker compose up -d && tsx watch --env-file=.env src/main.ts",
+    "dev": "tsx watch --env-file=.env src/main.ts",
+    "up": "docker compose up -d",
     "do-migration": "npx prisma migrate dev",
     "studio": "npx prisma studio",
     "migrate": "npx prisma migrate deploy && npx prisma generate",
