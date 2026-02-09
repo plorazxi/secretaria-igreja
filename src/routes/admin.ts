@@ -1,7 +1,7 @@
 import express from "express";
 import { compare } from "bcrypt";
 import jwt from "jsonwebtoken";
-import { env } from "../env.js";
+import { env } from "../lib/env.js";
 import { validateSchema } from "../middleware/validateSchema.js";
 import { loginSchema } from "../interfaces/adminInterface.js";
 

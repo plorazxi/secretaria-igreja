@@ -3,6 +3,7 @@ import cors from "cors";
 import { createServer } from "node:http";
 import { env } from "./env.js";
 import admin from "./routes/admin.js"
+import { env } from "./lib/env.js";
 
 const app = express();
 const server = createServer(app);
