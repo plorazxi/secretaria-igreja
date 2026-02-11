@@ -7,8 +7,15 @@ import { prisma } from "../lib/prismaClient.js";
 const router = express.Router();
 
 router.get("/:token", validateToken(), async (req, res) => {
-    let users = await prisma.cliente.findMany();
-    return res.status(200).send(users)
+    try {
+        let users = await prisma.cliente.findMany();
+        return res.status(200).send(users)
+    } catch (err) {
+        return res.status(400).send({
+            msg: "Erro ao listar usuários",
+            error: err
+        })
+    }
 });
 
 router.post("/create", validateSchema(createUserSchema), validateToken(), async (req, res) => {
@@ -21,7 +28,6 @@ router.post("/create", validateSchema(createUserSchema), validateToken(), async 
             msg: "Usuário criado com sucesso",
         });
     } catch (err) {
-        console.log(err)
         return res.status(400).send({
             msg: "Erro ao adicionar usuário no banco de dados",
             error: err
