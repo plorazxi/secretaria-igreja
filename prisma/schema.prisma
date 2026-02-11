@@ -22,5 +22,5 @@ model Cliente {
   data_nascimento DateTime @db.Date
   endereco String
   data_entrada DateTime @db.Date
-  note String @db.VarChar(300)
+  note String? @db.VarChar(300)
 }

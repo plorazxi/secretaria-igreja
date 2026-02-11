@@ -9,7 +9,7 @@ CREATE TABLE "Cliente" (
     "data_nascimento" DATE NOT NULL,
     "endereco" TEXT NOT NULL,
     "data_entrada" DATE NOT NULL,
-    "note" VARCHAR(300) NOT NULL,
+    "note" VARCHAR(300),
 
     CONSTRAINT "Cliente_pkey" PRIMARY KEY ("id")
 );
