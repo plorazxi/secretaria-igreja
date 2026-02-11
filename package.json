@@ -8,9 +8,10 @@
     "up": "docker compose up -d",
     "do-migration": "npx prisma migrate dev",
     "studio": "npx prisma studio",
-    "migrate": "npx prisma migrate deploy && npx prisma generate",
+    "migrate-dev": "npx prisma migrate deploy && npx prisma generate",
+    "generate": "npx prisma generate",
     "build": "tsc",
-    "start": "node build/main.js"
+    "start": "node build/src/main.js"
   },
   "keywords": [],
   "author": "",
