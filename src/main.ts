@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 import { createServer } from "node:http";
-import { env } from "./env.js";
-import admin from "./routes/admin.js"
 import { env } from "./lib/env.js";
+import admin from "./routes/admin.js";
+import users from "./routes/users.js";
 
 const app = express();
 const server = createServer(app);
@@ -13,7 +13,9 @@ app.use(cors({
     origin: '*'
 }));
 
-app.use("/admin", admin)
+app.use("/admin", admin);
+
+app.use("/users", users);
 
 app.get('/', (req, res) => {
     res.send('root route');
