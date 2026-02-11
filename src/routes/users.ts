@@ -1,7 +1,7 @@
 import express from "express";
 import { validateToken } from "../middleware/validateToken.js";
 import { validateSchema } from "../middleware/validateSchema.js";
-import { createUserSchema, deleteUserSchema } from "../interfaces/usersInterfaces.js";
+import { createUserSchema, deleteUserSchema, patchUserSchema } from "../interfaces/usersInterfaces.js";
 import { prisma } from "../lib/prismaClient.js";
 
 const router = express.Router();
@@ -24,6 +24,26 @@ router.post("/create", validateSchema(createUserSchema), validateToken(), async 
         console.log(err)
         return res.status(400).send({
             msg: "Erro ao adicionar usuário no banco de dados",
+            error: err
+        });
+    }
+});
+
+router.patch("/patch", validateSchema(patchUserSchema), validateToken(), async (req, res) => {
+    try {
+        const {token, id, ...patchDataUser} = req.body;
+        await prisma.cliente.update({
+            where: {
+                id: id
+            },
+            data: patchDataUser
+        });
+        return res.status(200).send({
+            msg: "Usuário alterado com sucesso"
+        });
+    } catch (err) {
+        return res.status(400).send({
+            msg: "Erro ao alterar usuário",
             error: err
         });
     }

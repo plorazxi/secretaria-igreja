@@ -15,6 +15,11 @@ export const createUserSchema = z.object({
 
 export type createUser = z.infer<typeof createUserSchema>;
 
+export const patchUserSchema = createUserSchema.partial().extend({
+    id: z.int(),
+    token: z.jwt({ alg: "HS256" })
+});
+
 export const deleteUserSchema = z.object({
     id: z.int(),
     token: z.jwt({ alg: "HS256" })
