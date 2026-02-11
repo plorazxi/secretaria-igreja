@@ -10,7 +10,12 @@ export const createUserSchema = z.object({
     endereco: z.string(),
     data_entrada: z.coerce.date(),
     note: z.string().optional(),
-    token: z.jwt({ alg: "HS256"})
+    token: z.jwt({ alg: "HS256" })
 });
 
 export type createUser = z.infer<typeof createUserSchema>;
+
+export const deleteUserSchema = z.object({
+    id: z.int(),
+    token: z.jwt({ alg: "HS256" })
+});
